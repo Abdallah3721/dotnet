@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Item>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container p-3">
+
+    <partial name="_Notification" />
+    <div class="row pt-4">
+        <div class="col-6">
+            <h1 class="text-primary">Items List</h1>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Items" asp-action="New" class="btn btn-primary text-end">Add New Item</a>
+        </div>
+    </div>
+</div>
+
+
+<table class="table table-hover " style="width:100%">
+    <thead>
+        <tr>
+            <th scope="col">
+                Item Name
+            </th>
+            <th scope="col">
+                Item Price
+            </th>
+            <th scope="col">
+                Category
+            </th>
+            <th scope="col">
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr class="table-primary">
+                    <td scope="row" width="30%">
+                        @item.Name
+                    </td>
+                    <td width="20%">
+                        @item.Price
+                    </td>
+                    <td width="30%">  
+                        @item.Category.Name
+                    </td>
+                    <td>
+                    <a asp-controller="Items" asp-action="Edit" asp-route-Id="@item.Id" class="btn btn-success text-end">Edit Item</a>
+                    <a asp-controller="Items" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger text-end">Delete Item</a>
+                    </td>
+                </tr>
+        }
+    </tbody>
+
+</table>
